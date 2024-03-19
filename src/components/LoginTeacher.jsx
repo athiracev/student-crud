@@ -10,9 +10,6 @@ function LoginTeacher() {
   const [uname,setUname]=useState('')
   const [pwd,setPwd]=useState('')
   const navigate=useNavigate()
-
-  
-
   
   const handleUsername=(event)=>{
     setUname(event.target.value)
