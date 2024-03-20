@@ -7,11 +7,13 @@ import ViewStudent from './components/ViewStudent'
 import { ToastContainer } from 'react-toastify'
 import CreateStudent from './components/CreateStudent'
 import StudentEdit from './components/StudentEdit'
+import Header from './components/Header'
 
 function App() {
 
   return (
     <>
+    <Header/>
       <Routes>
         <Route path='/' Component={LoginTeacher} />
         <Route path='/dashboard' Component={ViewStudent} />
