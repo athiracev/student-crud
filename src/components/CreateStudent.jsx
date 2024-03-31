@@ -14,12 +14,12 @@ function CreateStudent() {
 
   const [addStudent, setAddStudent] = useState({
     studentname: '',
-    dob: null, // or any default value for date of birth
+    dob: '', // or any default value for date of birth
     course: '',
     address: '',
     email: ''
   });
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
 
   const getdata = (e) => {
@@ -32,7 +32,7 @@ function CreateStudent() {
     }
     if (name === 'dob') {
       // Convert the string representation of the date to a Date object
-      setAddStudent({ ...addStudent, dob: new Date(value) });
+      setAddStudent({ ...addStudent, dob: value });
     } else {
       setAddStudent({ ...addStudent, [name]: value });
     }
@@ -51,51 +51,59 @@ function CreateStudent() {
 
   const handleSubmit = async () => {
     const { studentname, dob, course, address, email } = addStudent
-    if (!studentname || !dob || !course || !address || !email){
+    if (!studentname || !dob || !course || !address || !email) {
       toast.warning('Enter valid Details!!!')
-    }else{
+    } else {
       console.log(addStudent)
-      const res= await createStudent(addStudent)
-      setAddStudent(res.data)
-      console.log(res)
-      setTimeout(() => {
-      toast.success('added successfully')
-      navigate('/dashboard')
+      try {
+        const res = await createStudent(addStudent)
+        setAddStudent(res.data)
+        console.log(res)
 
-        
-      }, 1000);
-     
+        setTimeout(() => {
+          toast.success('added successfully')
+          navigate('/dashboard')
+
+        }, 1000);
+
+      } catch (error) {
+        console.log(error)
+        toast.error('some error occured')
+      }
+
     }
-}
+  }
 
 
   return (
-    <div className='shadow w-100 d-flex justify-content-center align-item-center'   >
-      <Form className='shadow p-3 bg-body rounded' style={{ width: '100vh' }}>
+    <div className='shadow w-100 d-flex justify-content-center align-item-center '   >
+
+
+      <Form className='shadow p-3 bg-body rounded  ' style={{ width: '100vh' }}>
         <h1 style={{ textAlign: 'center' }}>Creating Student List</h1>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" name='studentname' onChange={(e) => { getdata(e) }} placeholder="Enter your name" />
+          <Form.Control type="text" name='studentname' onChange={(e) => { getdata(e) }} placeholder="Enter your name" required={true} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>DOB</Form.Label>
-          <Form.Control type="date" name='dob' onChange={(e) => { getdata(e) }} />
+          <Form.Control type="date" name='dob' onChange={(e) => { getdata(e) }} required={true} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Class</Form.Label>
-          <Form.Control type="text" name='course' onChange={(e) => { getdata(e) }} placeholder="Enter your class" />
+          <Form.Control type="text" name='course' onChange={(e) => { getdata(e) }} placeholder="Enter your class" required={true} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Address</Form.Label>
-          <Form.Control as="textarea" name='address' onChange={(e) => { getdata(e) }} placeholder="Enter your address..." rows={3} />
+          <Form.Control as="textarea" name='address' onChange={(e) => { getdata(e) }} required={true} placeholder="Enter your address..." rows={3} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name='email' onChange={(e) => { getdata(e) }} placeholder="name@example.com" />
+          <Form.Control type="email" name='email' onChange={(e) => { getdata(e) }} placeholder="name@example.com" required={true} />
         </Form.Group>
 
-        <div className='text-center'>
-        <Button variant="primary" onClick={handleSubmit}>Add</Button> &nbsp; &nbsp;
+        <div className='text-center  '>
+          <Button variant="primary" onClick={handleSubmit}>Add</Button> &nbsp; &nbsp;
           <Link to={'/dashboard'}>
             <button className='btn btn-light ' >Cancel</button>
           </Link>

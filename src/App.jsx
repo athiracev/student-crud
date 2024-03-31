@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify'
 import CreateStudent from './components/CreateStudent'
 import StudentEdit from './components/StudentEdit'
 import Header from './components/Header'
+import Footer from './components/Footer'
+import LandingPage from './components/LandingPage'
 
 function App() {
 
@@ -15,11 +17,16 @@ function App() {
     <>
     <Header/>
       <Routes>
-        <Route path='/' Component={LoginTeacher} />
+        <Route path='/' Component={LandingPage} />
+        <Route path='/login' Component={LoginTeacher} />
         <Route path='/dashboard' Component={ViewStudent} />
         <Route path='/dashboard/createstu' Component={CreateStudent} />
-        <Route path='/dashboard/editstu/:id' Component={StudentEdit} />
+        {/* <Route path='/dashboard/editstu/:id' Component={StudentEdit} /> */}
+        <Route path="/dashboard/editstu/:id" component={StudentEdit} />
+
+       
       </Routes>
+      <Footer/>
 
 
       <ToastContainer />
