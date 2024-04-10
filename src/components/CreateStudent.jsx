@@ -54,14 +54,14 @@ function CreateStudent() {
     if (!studentname || !dob || !course || !address || !email) {
       toast.warning('Enter valid Details!!!')
     } else {
-      console.log(addStudent)
+      // console.log(addStudent)
       try {
         const res = await createStudent(addStudent)
         setAddStudent(res.data)
-        console.log(res)
+        // console.log(res)
 
         setTimeout(() => {
-          toast.success('added successfully')
+          toast.success('Added successfully')
           navigate('/dashboard')
 
         }, 1000);

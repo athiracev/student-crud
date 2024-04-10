@@ -22,7 +22,7 @@ function App() {
         <Route path='/dashboard' Component={ViewStudent} />
         <Route path='/dashboard/createstu' Component={CreateStudent} />
         {/* <Route path='/dashboard/editstu/:id' Component={StudentEdit} /> */}
-        <Route path="/dashboard/editstu/:id" component={StudentEdit} />
+        <Route path="/dashboard/editstu/:id" element={<StudentEdit/>} />
 
        
       </Routes>

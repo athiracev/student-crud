@@ -19,10 +19,10 @@ function ViewStudent() {
   // console.log(student)
 
   const delStudent = async (id) => {
-    console.log(id)
+    // console.log(id)
     const res = await deleteStudent(id)
     toast.success('successfully deleted')
-    console.log('deleted successfully')
+    // console.log('deleted successfully')
     getData()
   }
 
